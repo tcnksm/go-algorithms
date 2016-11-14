@@ -1,3 +1,3 @@
 # go-algorithms
 
-Golang implementation of algorithms or data structure. This is just for fun is not for production usage.
+Golang implementation of different algorithms and data structure. This is just for fun and learning. Don't use this for your project. 
