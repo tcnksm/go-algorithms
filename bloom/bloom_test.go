@@ -6,7 +6,7 @@ func TestBloomFilter(t *testing.T) {
 
 	inputs := []string{"x", "y", "z"}
 
-	BF := New(4, 150)
+	BF := New(100, 8000)
 	for _, input := range inputs {
 		BF.Add([]byte(input))
 	}
