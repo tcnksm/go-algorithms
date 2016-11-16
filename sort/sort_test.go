@@ -16,3 +16,13 @@ func TestBubble(t *testing.T) {
 		t.Errorf("   got %v", data)
 	}
 }
+
+func TestInsert(t *testing.T) {
+	data := ints
+	a := data[:]
+	Insert(a)
+	if !sort.IsSorted(sort.IntSlice(a)) {
+		t.Errorf("sorted %v", ints)
+		t.Errorf("   got %v", data)
+	}
+}
