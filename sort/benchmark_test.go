@@ -3,39 +3,19 @@ package sort
 import (
 	"fmt"
 	"math/rand"
-	"sort"
 	"testing"
 )
 
 func BenchmarkSort(b *testing.B) {
-	cases := []struct {
-		Name string
-		Func func([]int)
-	}{
-		{
-			"Standard",
-			sort.Ints,
-		},
-
-		{
-			"Insert",
-			Insert,
-		},
-
-		{
-			"Bubble",
-			Bubble,
-		},
-	}
-	sizes := []int{1000, 5000, 10000}
-	for _, size := range sizes {
+	// 1K to 64K
+	for s := uint(10); s < uint(17); s = s + 2 {
 		for _, bc := range cases {
-			b.Run(fmt.Sprintf("%s-%d", bc.Name, size), func(b *testing.B) {
+			b.Run(fmt.Sprintf("%s-%d", bc.Name, 1<<s), func(b *testing.B) {
 				b.StopTimer()
 				for i := 0; i < b.N; i++ {
-					data := make([]int, size)
+					data := make([]int, 1<<s)
 					for i := 0; i < len(data); i++ {
-						data[i] = rand.Intn(size)
+						data[i] = rand.Intn(1 << s)
 					}
 					b.StartTimer()
 					bc.Func(data)

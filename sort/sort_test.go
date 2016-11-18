@@ -7,22 +7,56 @@ import (
 
 var ints = [...]int{74, 59, 238, -784, 9845, 959, 905, 0, 0, 42, 7586, -5467984, 7586}
 
-func TestBubble(t *testing.T) {
-	data := ints
-	a := data[:]
-	Bubble(a)
-	if !sort.IsSorted(sort.IntSlice(a)) {
-		t.Errorf("sorted %v", ints)
-		t.Errorf("   got %v", data)
-	}
+var cases = []struct {
+	Name     string
+	Func     func([]int)
+	SkipTest bool
+}{
+	{
+		"Standard",
+		sort.Ints,
+		true,
+	},
+
+	{
+		"Quick",
+		Quick,
+		false,
+	},
+
+	{
+		"QuickSimple",
+		QuickSimple,
+		true,
+	},
+
+	{
+		"Insert",
+		Insert,
+		false,
+	},
+
+	{
+		"Bubble",
+		Bubble,
+		false,
+	},
 }
 
-func TestInsert(t *testing.T) {
-	data := ints
-	a := data[:]
-	Insert(a)
-	if !sort.IsSorted(sort.IntSlice(a)) {
-		t.Errorf("sorted %v", ints)
-		t.Errorf("   got %v", data)
+func TestSort(t *testing.T) {
+	for _, tc := range cases {
+		if tc.SkipTest {
+			continue
+		}
+
+		t.Run(tc.Name, func(t *testing.T) {
+			data := ints
+			a := data[:]
+			tc.Func(a)
+			if !sort.IsSorted(sort.IntSlice(a)) {
+				t.Errorf("sorted %v", ints)
+				t.Errorf("   got %v", data)
+			}
+		})
 	}
 }
