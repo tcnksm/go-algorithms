@@ -38,6 +38,12 @@ var cases = []struct {
 	},
 
 	{
+		"Selection",
+		Selection,
+		false,
+	},
+
+	{
 		"Bubble",
 		Bubble,
 		false,
