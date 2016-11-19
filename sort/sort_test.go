@@ -12,16 +12,17 @@ var cases = []struct {
 	Func     func([]int)
 	SkipTest bool
 }{
-	{
-		"Standard",
-		sort.Ints,
-		true,
-	},
 
 	{
 		"Quick",
 		Quick,
 		false,
+	},
+
+	{
+		"Standard",
+		sort.Ints,
+		true,
 	},
 
 	{
