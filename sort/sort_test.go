@@ -20,7 +20,13 @@ var cases = []struct {
 	},
 
 	{
-		"Standard",
+		"Heap",
+		Heap,
+		false,
+	},
+
+	{
+		"Std",
 		sort.Ints,
 		true,
 	},
@@ -38,7 +44,7 @@ var cases = []struct {
 	},
 
 	{
-		"Selection",
+		"Select",
 		Selection,
 		false,
 	},
