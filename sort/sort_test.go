@@ -38,6 +38,12 @@ var cases = []struct {
 	},
 
 	{
+		"Shell",
+		Shell,
+		false,
+	},
+
+	{
 		"Insert",
 		Insert,
 		false,
