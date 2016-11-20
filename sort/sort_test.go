@@ -26,14 +26,14 @@ var cases = []struct {
 	},
 
 	{
-		"Std",
-		sort.Ints,
+		"Bucket",
+		Bucket,
 		true,
 	},
 
 	{
-		"QuickSimple",
-		QuickSimple,
+		"Std",
+		sort.Ints,
 		true,
 	},
 
