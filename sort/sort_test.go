@@ -20,6 +20,12 @@ var cases = []struct {
 	},
 
 	{
+		"Shell",
+		Shell,
+		false,
+	},
+
+	{
 		"Heap",
 		Heap,
 		false,
@@ -35,12 +41,6 @@ var cases = []struct {
 		"Std",
 		sort.Ints,
 		true,
-	},
-
-	{
-		"Shell",
-		Shell,
-		false,
 	},
 
 	{
