@@ -25,6 +25,13 @@ $ go test -bench . -bemchmem -cpuprofile cpu.prof > new.txt
 $ benchcmp old.txt new.txt
 ```
 
+To visualize cmp,
+
+```bash
+$ go get github.com/ajstarks/svgo/benchviz
+$ benchcmp old.txt new.txt | benchviz > output.svg
+```
+
 To check cpu profile,
 
 ```bash
