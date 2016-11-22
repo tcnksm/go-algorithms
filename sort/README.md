@@ -41,3 +41,9 @@ $ go test -bench . -benchmem -memprofile mem.prof
 $ go tool pprof -alloc_objects sort.test mem.prof
 ```
 
+To generate markdown table,
+
+```bash
+$ go get github.com/tcnksm/misc/cmd/benchtable
+$ go test -bench . -benchmem | benchtable
+```
