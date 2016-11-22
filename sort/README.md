@@ -2,17 +2,17 @@
 
 The followings are benchmarking result.
 
-|name|times|speed|allocs|allocs|
-| --- | --- | --- | --- | --- |
-|BenchmarkSort1K/Quick-4 |   30000|     48905 ns/op|       0 B/op|       0 allocs/op|
-|BenchmarkSort1K/Shell-4 |   20000|     87715 ns/op|       0 B/op|       0 allocs/op|
-|BenchmarkSort1K/Heap-4  |   10000|    100674 ns/op|       0 B/op|       0 allocs/op|
-|BenchmarkSort1K/Bucket-4         |   10000|    167493 ns/op|   36766 B/op|     781 allocs/op|
-|BenchmarkSort1K/Std-4            |   10000|    116066 ns/op|      32 B/op|       1 allocs/op|
-|BenchmarkSort1K/Insert-4         |    3000|    408920 ns/op|       0 B/op|       0 allocs/op|
-|BenchmarkSort1K/Select-4         |    2000|   1014113 ns/op|       0 B/op|       0 allocs/op|
-|BenchmarkSort1K/Bubble-4         |    2000|   1181917 ns/op|       0 B/op|       0 allocs/op|
-
+| name | times | speed | allocs | allocs |
+| ---- | ----- | ----- | ------ | ------ |
+|BenchmarkSort1K/Quick-4         |   30000|     47242 ns/op|       0 B/op|       0 allocs/op|
+|BenchmarkSort1K/Shell-4         |   20000|     88897 ns/op|       0 B/op|       0 allocs/op|
+|BenchmarkSort1K/Merge-4         |   20000|     96350 ns/op|   81920 B/op|    1023 allocs/op|
+|BenchmarkSort1K/Heap-4          |   10000|    100483 ns/op|       0 B/op|       0 allocs/op|
+|BenchmarkSort1K/Bucket-4        |   10000|    169949 ns/op|   36761 B/op|     781 allocs/op|
+|BenchmarkSort1K/Std-4           |   10000|    111402 ns/op|      32 B/op|       1 allocs/op|
+|BenchmarkSort1K/Insert-4        |    3000|    408089 ns/op|       0 B/op|       0 allocs/op|
+|BenchmarkSort1K/Select-4        |    2000|   1017915 ns/op|       0 B/op|       0 allocs/op|
+|BenchmarkSort1K/Bubble-4        |    2000|   1163597 ns/op|       0 B/op|       0 allocs/op|
 
 ## Tips
 

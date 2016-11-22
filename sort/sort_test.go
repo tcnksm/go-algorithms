@@ -26,6 +26,12 @@ var cases = []struct {
 	},
 
 	{
+		"Merge",
+		Merge,
+		false,
+	},
+
+	{
 		"Heap",
 		Heap,
 		false,
