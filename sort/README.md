@@ -14,6 +14,11 @@ The followings are benchmarking result.
 |BenchmarkSort1K/Select-4|2000|1025890|0|0|
 |BenchmarkSort1K/Bubble-4|2000|1249174|0|0|
 
+
+![sort-random-1K](doc/sort-random-1K.png)
+
+[https://docs.google.com/spreadsheets/d/1cdkryOQ8jA0TcfHctMHHLvXWGEMU86kDs4EPhnQuebk](https://docs.google.com/spreadsheets/d/1cdkryOQ8jA0TcfHctMHHLvXWGEMU86kDs4EPhnQuebk/edit?usp=sharing)
+
 ## Tips
 
 To compare performance use [`benchcmp`](https://godoc.org/golang.org/x/tools/cmd/benchcmp)
