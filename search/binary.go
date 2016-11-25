@@ -6,9 +6,8 @@ package search
 // Worst:   O(log n)
 // Average: O(log n)
 func Binary(a []int, x int) bool {
-
 	left, right := 0, len(a)
-	for left < right {
+	for left <= right {
 		index := left + (right-left)/2
 		if a[index] == x {
 			return true

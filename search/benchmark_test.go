@@ -3,6 +3,7 @@ package search
 import (
 	"fmt"
 	"math/rand"
+	"sort"
 	"testing"
 )
 
@@ -21,8 +22,26 @@ func randomArray(n, p, x int) []int {
 	return a
 }
 
-func BenchmarkSequential(b *testing.B) {
+func BenchmarkBinary(b *testing.B) {
+	for k := uint(16); k <= 16; k++ {
+		l := 1 << k
+		b.Run(fmt.Sprintf("%d", l), func(b *testing.B) {
+			b.StopTimer()
+			x := 124
+			a := randomArray(l, rand.Intn(l-1), x)
+			sort.Ints(a)
+			b.StartTimer()
+			for i := 0; i < b.N; i++ {
+				if !Binary(a, x) {
+					b.Fatalf("expect %d to be found", x)
+				}
+				b.StopTimer()
+			}
+		})
+	}
+}
 
+func BenchmarkSequential(b *testing.B) {
 	for k := uint(8); k <= 16; k++ {
 		l := 1 << k
 		b.Run(fmt.Sprintf("%d", l), func(b *testing.B) {
