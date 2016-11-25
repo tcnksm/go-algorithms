@@ -31,3 +31,17 @@ func TestBinary(t *testing.T) {
 		t.Errorf("Search=%v, want=false", got)
 	}
 }
+
+func TestHash(t *testing.T) {
+	data := ints
+	a := data[:]
+	table := HashTable(a)
+
+	if got := Hash(table, 42); !got {
+		t.Errorf("Search=%v, want=true", got)
+	}
+
+	if got := Hash(table, 43); got {
+		t.Errorf("Search=%v, want=false", got)
+	}
+}
