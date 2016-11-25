@@ -6,8 +6,8 @@ package search
 // Worst:   O(n)
 // Average: O(n)
 func Sequential(a []int, x int) bool {
-	for _, e := range a {
-		if e == x {
+	for i := 0; i < len(a); i++ {
+		if a[i] == x {
 			return true
 		}
 	}
