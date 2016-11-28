@@ -1,10 +1,6 @@
 package search
 
-import (
-	"fmt"
-	"hash/fnv"
-	"math"
-)
+import "math"
 
 var tableLen int
 
@@ -16,14 +12,19 @@ func init() {
 	tableLen = defaultTableLen
 }
 
+func hash(x int) int {
+	v := x % tableLen
+	if x < 0 {
+		return -v
+	}
+	return v
+}
+
 // HashTable construct hash table with size n.
 func HashTable(a []int) [][]int {
 	table := make([][]int, tableLen)
-	h := fnv.New32()
 	for _, v := range a {
-		h.Write([]byte(fmt.Sprintf("%d", v)))
-		index := int(h.Sum32())
-		h.Reset()
+		index := hash(v)
 		table[index%tableLen] = append(table[index%tableLen], v)
 	}
 
@@ -32,10 +33,7 @@ func HashTable(a []int) [][]int {
 
 // Hash search searches target x is in HashTable or not
 func Hash(table [][]int, x int) bool {
-	h := fnv.New32()
-	h.Write([]byte(fmt.Sprintf("%d", x)))
-	index := int(h.Sum32())
-
+	index := hash(x)
 	l := table[index%tableLen]
 	if len(l) == 0 {
 		return false

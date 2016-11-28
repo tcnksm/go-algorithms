@@ -23,19 +23,36 @@ func randomArray(n, p, x int) []int {
 }
 
 func BenchmarkBinary(b *testing.B) {
-	for k := uint(16); k <= 16; k++ {
+	l := 1 << 20
+	b.Run(fmt.Sprintf("%d", l), func(b *testing.B) {
+		b.StopTimer()
+		x := rand.Intn(l)
+		a := randomArray(l, rand.Intn(l-1), x)
+		sort.Ints(a)
+		b.StartTimer()
+		for i := 0; i < b.N; i++ {
+			if !Binary(a, x) {
+				b.Fatalf("expect %d to be found", x)
+			}
+			b.StopTimer()
+		}
+	})
+}
+
+func BenchmarkHash(b *testing.B) {
+	for k := uint(8); k <= 16; k++ {
 		l := 1 << k
 		b.Run(fmt.Sprintf("%d", l), func(b *testing.B) {
 			b.StopTimer()
-			x := 124
-			a := randomArray(l, rand.Intn(l-1), x)
-			sort.Ints(a)
+			x := rand.Intn(l)
+			a := randomArray(l, l/2, x)
 			b.StartTimer()
+
+			t := HashTable(a)
 			for i := 0; i < b.N; i++ {
-				if !Binary(a, x) {
-					b.Fatalf("expect %d to be found", x)
+				if !Hash(t, x) {
+					b.Fatal("expect to be found")
 				}
-				b.StopTimer()
 			}
 		})
 	}
