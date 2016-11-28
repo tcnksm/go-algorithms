@@ -1,7 +1,9 @@
 package sort
 
+import "math"
+
 // TODO: Set ideal number of bucket and hash function.
-const bucket = 256
+var bucket = math.Pow(2, 10) - 1
 
 func hash(x int) int {
 	return x % bucket
