@@ -2,6 +2,8 @@ package search
 
 import "github.com/tcnksm/go-algorithms/datastructure"
 
+// Binary Search Tree is very suited when you need to
+// add (insert) new elements very often.
 func ConstructTree(a []int) *datastructure.BinaryTree {
 	less := func(x, y interface{}) bool {
 		i, j := x.(int), y.(int)
