@@ -2,6 +2,7 @@ package search
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
 	"sort"
 	"testing"
@@ -48,9 +49,9 @@ func BenchmarkHash(b *testing.B) {
 			a := randomArray(l, l/2, x)
 			b.StartTimer()
 
-			t := HashTable(a)
+			ht := NewHashTable(a, int(math.Pow(2, 10))-1)
 			for i := 0; i < b.N; i++ {
-				if !Hash(t, x) {
+				if ht.Search(x) {
 					b.Fatal("expect to be found")
 				}
 			}

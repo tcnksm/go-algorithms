@@ -1,6 +1,7 @@
 package search
 
 import (
+	"math"
 	"sort"
 	"testing"
 )
@@ -35,13 +36,13 @@ func TestBinary(t *testing.T) {
 func TestHash(t *testing.T) {
 	data := ints
 	a := data[:]
-	table := HashTable(a)
+	ht := NewHashTable(a, int(math.Pow(2, 10))-1)
 
-	if got := Hash(table, 42); !got {
+	if got := ht.Search(42); !got {
 		t.Errorf("Search=%v, want=true", got)
 	}
 
-	if got := Hash(table, 43); got {
+	if got := ht.Search(43); got {
 		t.Errorf("Search=%v, want=false", got)
 	}
 }
@@ -49,7 +50,6 @@ func TestHash(t *testing.T) {
 func TestBinaryTree(t *testing.T) {
 	data := ints
 	a := data[:]
-
 	tree := ConstructTree(a)
 
 	if got := tree.Search(42); !got {

@@ -1,32 +1,35 @@
 package search
 
-import "math"
-
-var tableLen int
-
-var (
-	defaultTableLen = int(math.Pow(2, 10)) - 1
-)
-
-func init() {
-	tableLen = defaultTableLen
+type HashTable struct {
+	table [][]int
+	size  int
 }
 
-// HashTable construct hash table with size n.
-func HashTable(a []int) [][]int {
-	table := make([][]int, tableLen)
-	for _, v := range a {
-		index := hash(v)
-		table[index%tableLen] = append(table[index%tableLen], v)
+func NewHashTable(a []int, size int) *HashTable {
+	ht := &HashTable{
+		table: make([][]int, size),
+		size:  size,
 	}
 
-	return table
+	for i := 0; i < len(a); i++ {
+		index := ht.hash(a[i])
+		ht.table[index%size] = append(ht.table[index%size], a[i])
+	}
+
+	return ht
 }
 
-// Hash search searches target x is in HashTable or not
-func Hash(table [][]int, x int) bool {
-	index := hash(x)
-	l := table[index%tableLen]
+func (h *HashTable) hash(x int) int {
+	v := x % h.size
+	if x < 0 {
+		return -v
+	}
+	return v
+}
+
+func (h *HashTable) Search(x int) bool {
+	index := h.hash(x)
+	l := h.table[index%h.size]
 	if len(l) == 0 {
 		return false
 	}
@@ -38,12 +41,4 @@ func Hash(table [][]int, x int) bool {
 	}
 
 	return false
-}
-
-func hash(x int) int {
-	v := x % tableLen
-	if x < 0 {
-		return -v
-	}
-	return v
 }
