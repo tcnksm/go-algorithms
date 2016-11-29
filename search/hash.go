@@ -12,14 +12,6 @@ func init() {
 	tableLen = defaultTableLen
 }
 
-func hash(x int) int {
-	v := x % tableLen
-	if x < 0 {
-		return -v
-	}
-	return v
-}
-
 // HashTable construct hash table with size n.
 func HashTable(a []int) [][]int {
 	table := make([][]int, tableLen)
@@ -46,4 +38,12 @@ func Hash(table [][]int, x int) bool {
 	}
 
 	return false
+}
+
+func hash(x int) int {
+	v := x % tableLen
+	if x < 0 {
+		return -v
+	}
+	return v
 }
