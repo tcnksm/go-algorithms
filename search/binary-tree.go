@@ -1,0 +1,17 @@
+package search
+
+import "github.com/tcnksm/go-algorithms/datastructure"
+
+func ConstructTree(a []int) *datastructure.BinaryTree {
+	less := func(x, y interface{}) bool {
+		i, j := x.(int), y.(int)
+		return i < j
+	}
+
+	tree := datastructure.NewBinaryTree(less)
+	for i := 0; i < len(a); i++ {
+		tree.Insert(a[i])
+	}
+
+	return tree
+}

@@ -45,3 +45,18 @@ func TestHash(t *testing.T) {
 		t.Errorf("Search=%v, want=false", got)
 	}
 }
+
+func TestBinaryTree(t *testing.T) {
+	data := ints
+	a := data[:]
+
+	tree := ConstructTree(a)
+
+	if got := tree.Search(42); !got {
+		t.Errorf("Search=%v, want=true", got)
+	}
+
+	if got := tree.Search(43); got {
+		t.Errorf("Search=%v, want=false", got)
+	}
+}
