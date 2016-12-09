@@ -47,3 +47,13 @@ func (t *BinaryTree) Search(v interface{}) bool {
 
 	return t.right.Search(v)
 }
+
+func (t *BinaryTree) Walk(walkFn func(v interface{})) {
+	if t.node == nil {
+		return
+	}
+
+	t.left.Walk(walkFn)
+	walkFn(t.node)
+	t.right.Walk(walkFn)
+}
