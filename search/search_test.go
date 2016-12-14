@@ -50,7 +50,7 @@ func TestHash(t *testing.T) {
 func TestBinaryTree(t *testing.T) {
 	data := ints
 	a := data[:]
-	tree := ConstructTree(a)
+	tree := NewBinaryTree(a)
 
 	if got := tree.Search(42); !got {
 		t.Errorf("Search=%v, want=true", got)
