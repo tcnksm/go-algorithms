@@ -3,3 +3,8 @@
 [travis]: https://travis-ci.org/tcnksm/go-algorithms
 
 Golang implementation of different algorithms and data structure. This is just for fun and learning. Don't use this for your project. 
+
+## References
+
+- https://github.com/arnauddri/algorithms
+- https://github.com/0xAX/go-algorithms

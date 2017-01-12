@@ -6,9 +6,6 @@ import (
 	"github.com/tcnksm/go-algorithms/datastructure"
 )
 
-// Vertex 節点
-// Edge 辺
-
 type Graph struct {
 	n        int // number of vertex
 	edges    [][]int
