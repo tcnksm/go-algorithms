@@ -1,14 +1,15 @@
-package datastructure
+package tree
 
 import "testing"
+import "sort"
 
-func TestBinaryTree(t *testing.T) {
+func TestBinary(t *testing.T) {
 	less := func(x, y interface{}) bool {
 		i, j := x.(int), y.(int)
 		return i < j
 	}
 
-	tree := NewBinaryTree(less)
+	tree := NewBinary(less)
 	for _, i := range []int{1, 10, 14, 3, 56} {
 		tree.Insert(i)
 	}
@@ -19,5 +20,7 @@ func TestBinaryTree(t *testing.T) {
 		res = append(res, i)
 	})
 
-	t.Log(res)
+	if !sort.IsSorted(sort.IntSlice(res)) {
+		t.Fatalf("expect to be sorted: %v", res)
+	}
 }

@@ -1,26 +1,26 @@
-package datastructure
+package tree
 
 type less func(x, y interface{}) bool
 
-type BinaryTree struct {
-	left, right *BinaryTree
+type Binary struct {
+	left, right *Binary
 	node        interface{}
 
 	less less
 }
 
-func NewBinaryTree(less less) *BinaryTree {
-	return &BinaryTree{
+func NewBinary(less less) *Binary {
+	return &Binary{
 		less: less,
 	}
 }
 
 // Insert inserts element v into BinaryTree
-func (t *BinaryTree) Insert(v interface{}) {
+func (t *Binary) Insert(v interface{}) {
 	if t.node == nil {
 		t.node = v
-		t.left = NewBinaryTree(t.less)
-		t.right = NewBinaryTree(t.less)
+		t.left = NewBinary(t.less)
+		t.right = NewBinary(t.less)
 		return
 	}
 
@@ -32,7 +32,7 @@ func (t *BinaryTree) Insert(v interface{}) {
 	t.right.Insert(v)
 }
 
-func (t *BinaryTree) Search(v interface{}) bool {
+func (t *Binary) Search(v interface{}) bool {
 	if t.node == nil {
 		return false
 	}
@@ -48,7 +48,7 @@ func (t *BinaryTree) Search(v interface{}) bool {
 	return t.right.Search(v)
 }
 
-func (t *BinaryTree) Walk(walkFn func(v interface{})) {
+func (t *Binary) Walk(walkFn func(v interface{})) {
 	if t.node == nil {
 		return
 	}
