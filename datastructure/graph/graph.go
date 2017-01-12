@@ -2,6 +2,8 @@ package graph
 
 import (
 	"fmt"
+
+	"github.com/tcnksm/go-algorithms/datastructure"
 )
 
 // Vertex 節点
@@ -58,4 +60,40 @@ func (g *Graph) IsEdge(i, j int) bool {
 		return true
 	}
 	return false
+}
+
+func (g *Graph) Neighbours(i int) []int {
+	neighbours := make([]int, 0, g.n)
+	for j := 0; j < g.n; j++ {
+		v := g.edges[i][j]
+		if v > 0 {
+			neighbours = append(neighbours, j)
+		}
+	}
+	return neighbours
+}
+
+func (g *Graph) DepthFirstSearch(s int, fn func(i int)) {
+	visited := make([]int, g.n)
+	stack := &datastructure.Stack{}
+	stack.Push(s)
+
+	for {
+		v, err := stack.Pop()
+		if err != nil {
+			break
+		}
+
+		i := v.(int)
+		if visited[i] == 1 {
+			continue
+		}
+
+		visited[i] = 1
+		fn(i)
+
+		for _, j := range g.Neighbours(i) {
+			stack.Push(j)
+		}
+	}
 }
