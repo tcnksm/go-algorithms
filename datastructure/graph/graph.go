@@ -1,10 +1,6 @@
 package graph
 
-import (
-	"fmt"
-
-	"github.com/tcnksm/go-algorithms/datastructure"
-)
+import "fmt"
 
 type Graph struct {
 	n        int // number of vertex
@@ -68,29 +64,4 @@ func (g *Graph) Neighbours(i int) []int {
 		}
 	}
 	return neighbours
-}
-
-func (g *Graph) DepthFirstSearch(s int, fn func(i int)) {
-	visited := make([]int, g.n)
-	stack := &datastructure.Stack{}
-	stack.Push(s)
-
-	for {
-		v, err := stack.Pop()
-		if err != nil {
-			break
-		}
-
-		i := v.(int)
-		if visited[i] == 1 {
-			continue
-		}
-
-		visited[i] = 1
-		fn(i)
-
-		for _, j := range g.Neighbours(i) {
-			stack.Push(j)
-		}
-	}
 }
