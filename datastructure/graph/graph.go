@@ -8,7 +8,7 @@ type Graph struct {
 	directed bool
 }
 
-func New(n int) *Graph {
+func New(n int, directed bool) *Graph {
 	edges := make([][]int, n)
 	for i := 0; i < n; i++ {
 		edges[i] = make([]int, n)
@@ -17,7 +17,7 @@ func New(n int) *Graph {
 	return &Graph{
 		n:        n,
 		edges:    edges,
-		directed: true,
+		directed: directed,
 	}
 }
 
@@ -36,6 +36,11 @@ func (g *Graph) AddEdge(i, j int, w int) error {
 	}
 
 	g.edges[i][j] = w
+
+	if !g.directed {
+		g.edges[j][i] = w
+	}
+
 	return nil
 }
 
@@ -45,6 +50,10 @@ func (g *Graph) RemoveEdge(i, j int) error {
 	}
 
 	g.edges[i][j] = 0
+
+	if !g.directed {
+		g.edges[j][i] = 0
+	}
 	return nil
 }
 

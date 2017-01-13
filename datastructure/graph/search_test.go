@@ -5,8 +5,8 @@ import (
 	"testing"
 )
 
-func testGraph(t *testing.T) *Graph {
-	directedGraph := New(10)
+func testGraph(t *testing.T, directed bool) *Graph {
+	directedGraph := New(10, directed)
 
 	//            0
 	//       /    |   \
@@ -28,39 +28,42 @@ func testGraph(t *testing.T) *Graph {
 	return directedGraph
 }
 
-func TestDirectedGraph_DFS(t *testing.T) {
-	graph := testGraph(t)
-	want := []int{0, 3, 8, 2, 7, 6, 1, 5, 4, 9}
+func TestDFS(t *testing.T) {
+	for _, directed := range []bool{true, false} {
+		graph := testGraph(t, directed)
+		want := []int{0, 3, 8, 2, 7, 6, 1, 5, 4, 9}
 
-	got := make([]int, 0, 10)
-	err := DepthFirstSearch(graph, 0, func(i int) {
-		got = append(got, i)
-	})
+		got := make([]int, 0, 10)
+		err := DepthFirstSearch(graph, 0, func(i int) {
+			got = append(got, i)
+		})
 
-	if err != nil {
-		t.Fatalf("err: %s", err)
+		if err != nil {
+			t.Fatalf("err: %s", err)
+		}
+
+		if !reflect.DeepEqual(got, want) {
+			t.Fatalf("got %v, want %v", got, want)
+		}
 	}
-
-	if !reflect.DeepEqual(got, want) {
-		t.Fatalf("got %v, want %v", got, want)
-	}
-
 }
 
-func TestDirectedGraph_BFS(t *testing.T) {
-	graph := testGraph(t)
-	want := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+func TestBFS(t *testing.T) {
+	for _, directed := range []bool{true, false} {
+		graph := testGraph(t, directed)
+		want := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 
-	got := make([]int, 0, 10)
-	err := BreadthFirstSearch(graph, 0, func(i int) {
-		got = append(got, i)
-	})
+		got := make([]int, 0, 10)
+		err := BreadthFirstSearch(graph, 0, func(i int) {
+			got = append(got, i)
+		})
 
-	if err != nil {
-		t.Fatalf("err: %s", err)
-	}
+		if err != nil {
+			t.Fatalf("err: %s", err)
+		}
 
-	if !reflect.DeepEqual(got, want) {
-		t.Fatalf("got %v, want %v", got, want)
+		if !reflect.DeepEqual(got, want) {
+			t.Fatalf("got %v, want %v", got, want)
+		}
 	}
 }

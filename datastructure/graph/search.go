@@ -12,11 +12,13 @@ func BreadthFirstSearch(graph *Graph, s int, fn func(i int)) error {
 		if err != nil {
 			break
 		}
+
 		i := v.(int)
 		if visited[i] == 1 {
 			continue
 		}
 
+		visited[i] = 1
 		fn(i)
 
 		for _, j := range graph.Neighbours(i) {
