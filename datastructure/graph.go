@@ -21,6 +21,10 @@ func NewGraph(n int, directed bool) *Graph {
 	}
 }
 
+func (g *Graph) Edge(i, j int) int {
+	return g.edges[i][j]
+}
+
 func (g *Graph) AddEdge(i, j int, w int) error {
 	if i == j {
 		return fmt.Errorf("self-loop")
