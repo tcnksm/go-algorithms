@@ -1,4 +1,4 @@
-package graph
+package datastructure
 
 import (
 	"reflect"
@@ -6,7 +6,7 @@ import (
 )
 
 func TestDirectedGraph(t *testing.T) {
-	directedGraph := New(10, true)
+	directedGraph := NewGraph(10, true)
 
 	directedGraph.AddEdge(0, 1, 1)
 	if !directedGraph.IsEdge(0, 1) {
@@ -32,7 +32,7 @@ func TestDirectedGraph(t *testing.T) {
 }
 
 func TestUndirectedGraph(t *testing.T) {
-	undirectedGraph := New(10, false)
+	undirectedGraph := NewGraph(10, false)
 
 	undirectedGraph.AddEdge(0, 1, 1)
 	if !undirectedGraph.IsEdge(0, 1) || !undirectedGraph.IsEdge(1, 0) {

@@ -1,21 +1,21 @@
-package graph
+package datastructure
 
 import "fmt"
 
 type Graph struct {
-	n        int // number of vertex
+	N        int // number of vertex
 	edges    [][]int
 	directed bool
 }
 
-func New(n int, directed bool) *Graph {
+func NewGraph(n int, directed bool) *Graph {
 	edges := make([][]int, n)
 	for i := 0; i < n; i++ {
 		edges[i] = make([]int, n)
 	}
 
 	return &Graph{
-		n:        n,
+		N:        n,
 		edges:    edges,
 		directed: directed,
 	}
@@ -65,8 +65,8 @@ func (g *Graph) IsEdge(i, j int) bool {
 }
 
 func (g *Graph) Neighbours(i int) []int {
-	neighbours := make([]int, 0, g.n)
-	for j := 0; j < g.n; j++ {
+	neighbours := make([]int, 0, g.N)
+	for j := 0; j < g.N; j++ {
 		v := g.edges[i][j]
 		if v > 0 {
 			neighbours = append(neighbours, j)

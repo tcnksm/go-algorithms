@@ -1,7 +1,9 @@
-package tree
+package datastructure
 
-import "testing"
-import "sort"
+import (
+	"sort"
+	"testing"
+)
 
 func TestBinary(t *testing.T) {
 	less := func(x, y interface{}) bool {
@@ -9,7 +11,7 @@ func TestBinary(t *testing.T) {
 		return i < j
 	}
 
-	tree := NewBinary(less)
+	tree := NewBinaryTree(less)
 	for _, i := range []int{1, 10, 14, 3, 56} {
 		tree.Insert(i)
 	}

@@ -3,10 +3,12 @@ package graph
 import (
 	"reflect"
 	"testing"
+
+	"github.com/tcnksm/go-algorithms/datastructure"
 )
 
-func testGraph(t *testing.T, directed bool) *Graph {
-	directedGraph := New(10, directed)
+func testGraph(t *testing.T, directed bool) *datastructure.Graph {
+	directedGraph := datastructure.NewGraph(10, directed)
 
 	//            0
 	//       /    |   \
