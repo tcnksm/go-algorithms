@@ -32,11 +32,12 @@ func (q *priorityQueue) Pop() interface{} {
 	return v
 }
 
+// O((V+E)logV)
 func Dijkstra(graph *datastructure.Graph, s int, dist []int) error {
 	pq := make(priorityQueue, 0, graph.N)
 	heap.Init(&pq)
 
-	// Initialize dist
+	// Initialize dist, O(V*logV)
 	for i := 0; i < graph.N; i++ {
 		dist[i] = inf
 		if i == s {
@@ -49,18 +50,56 @@ func Dijkstra(graph *datastructure.Graph, s int, dist []int) error {
 		})
 	}
 
+	// O(E*logV)
 	for pq.Len() > 0 {
-		v := heap.Pop(&pq).(vertex)
-		for _, nextV := range graph.Neighbours(v.id) {
-			newDist := dist[v.id] + graph.Edge(v.id, nextV)
-			if newDist < dist[nextV] {
-				dist[nextV] = newDist
+		u := heap.Pop(&pq).(vertex).id
+		for _, v := range graph.Neighbours(u) {
+			newDist := dist[u] + graph.Edge(u, v)
+			if newDist < dist[v] {
+				dist[v] = newDist
 			}
 		}
 
 		// Better to use Fix function
 		// How to know index which is fixed
 		heap.Init(&pq)
+	}
+
+	return nil
+}
+
+// Without heap
+func DijkstraDG(graph *datastructure.Graph, s int, dist []int) error {
+	visited := make([]bool, graph.N, graph.N)
+	for i := 0; i < graph.N; i++ {
+		if i == s {
+			dist[i] = 0
+			continue
+		}
+		dist[i] = inf
+	}
+
+	for {
+
+		// Find V(u) which is not visited
+		u := -1
+		for i := 0; i < graph.N; i++ {
+			if !visited[i] && dist[i] < inf {
+				u = i
+			}
+		}
+
+		if u == -1 {
+			break
+		}
+
+		visited[u] = true
+		for _, v := range graph.Neighbours(u) {
+			newDist := dist[u] + graph.Edge(u, v)
+			if newDist < dist[v] {
+				dist[v] = newDist
+			}
+		}
 	}
 
 	return nil

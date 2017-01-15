@@ -7,7 +7,7 @@ import (
 	"github.com/tcnksm/go-algorithms/datastructure"
 )
 
-func TestDijkstra(t *testing.T) {
+func testGraphShortestPath(t *testing.T) (*datastructure.Graph, []int) {
 	directedGraph := datastructure.NewGraph(6, true)
 
 	directedGraph.AddEdge(0, 1, 6)
@@ -23,8 +23,26 @@ func TestDijkstra(t *testing.T) {
 	// from vertex 0 to vertex 5
 	want := []int{0, 6, 8, 17, 17, 20}
 
+	return directedGraph, want
+}
+
+func TestDijkstra(t *testing.T) {
+	directedGraph, want := testGraphShortestPath(t)
 	dist := make([]int, 6)
 	if err := Dijkstra(directedGraph, 0, dist); err != nil {
+		t.Fatalf("err: %s", err)
+	}
+
+	if !reflect.DeepEqual(dist, want) {
+		t.Fatalf("got %v, want %v", dist, want)
+	}
+}
+
+func TestDijkstraDG(t *testing.T) {
+	directedGraph, want := testGraphShortestPath(t)
+
+	dist := make([]int, 6)
+	if err := DijkstraDG(directedGraph, 0, dist); err != nil {
 		t.Fatalf("err: %s", err)
 	}
 
