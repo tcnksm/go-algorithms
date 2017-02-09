@@ -18,9 +18,9 @@ func TestQueue(t *testing.T) {
 			t.Fatal("err:", err)
 		}
 	}
-
 	if got, want := v.(int), 5; got != want {
 		t.Fatalf("got %v, want %v", got, want)
+
 	}
 
 	if _, err := queue.Dequeue(); err == nil {

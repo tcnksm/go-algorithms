@@ -3,10 +3,14 @@ package datastructure
 import "fmt"
 
 type Graph struct {
-	N        int // number of vertex
+	N        int // number of verte
 	edges    [][]int
 	directed bool
 }
+
+const (
+	testVallue = 100
+)
 
 func NewGraph(n int, directed bool) *Graph {
 	edges := make([][]int, n)
@@ -30,8 +34,8 @@ func (g *Graph) AddEdge(i, j int, w int) error {
 		return fmt.Errorf("self-loop")
 	}
 
-	if w < 1 {
-		return fmt.Errorf("weight must be more than 1")
+	if w == 0 {
+		return fmt.Errorf("Weight must be non-zero value")
 	}
 
 	// Not allow to add edge twice
@@ -72,7 +76,7 @@ func (g *Graph) Neighbours(i int) []int {
 	neighbours := make([]int, 0, g.N)
 	for j := 0; j < g.N; j++ {
 		v := g.edges[i][j]
-		if v > 0 {
+		if v != 0 {
 			neighbours = append(neighbours, j)
 		}
 	}
