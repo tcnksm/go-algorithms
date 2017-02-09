@@ -42,7 +42,7 @@ func TestBellmanFord_negative_cycle(t *testing.T) {
 	directedGraph.AddEdge(4, 1, 5)
 	directedGraph.AddEdge(3, 2, 6)
 	directedGraph.AddEdge(1, 3, -2)
-	directedGraph.AddEdge(2, 1, -3)
+	directedGraph.AddEdge(2, 1, -5)
 
 	dist := make([]int, 5)
 	if err := BellmanFord(directedGraph, 0, dist); err == nil {
